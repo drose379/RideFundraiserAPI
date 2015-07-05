@@ -17,7 +17,7 @@ class router {
 	}
 
 	public function match($path) {
-		foreach ($this->routes as $route) {
+		foreach ($this->routes as $route => $action) {
 			if (preg_match("#^$route/?$#i",$path,$params)) {
       			return [$action,$params];
     		}
