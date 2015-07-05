@@ -2,4 +2,8 @@
 
 require 'router.php';
 
-echo "Test";
+$router = new Router();
+
+$route = $_SERVER["PATH_INFO"] . "/";
+
+$router->run($route);
