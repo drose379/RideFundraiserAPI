@@ -8,13 +8,11 @@ class LiveEvent {
 		
 		$user = $post[0];
 		$eventName = $post[1];
-		/*
 		$organization = $post[2];
 		$rate = $post[3];
 		$goalDistance = $post[4];
-		*/
 
-		echo $organization;
+		echo $organization + $eventName + $organization + $goalDistance;
 
 		//$this->createLiveEvent($user,$eventName,$organization,$rate,$goalDistance);
 	}
