@@ -7,12 +7,16 @@ class LiveEvent {
 		$post = json_decode(file_get_contents('php://input'),true);
 		
 		$user = $post[0];
+		/*
 		$eventName = $post[1];
 		$organization = $post[2];
 		$rate = $post[3];
 		$goalDistance = $post[4];
+		*/
 
-		$this->createLiveEvent($user,$eventName,$organization,$rate,$goalDistance);
+		echo $user;
+
+		//$this->createLiveEvent($user,$eventName,$organization,$rate,$goalDistance);
 	}
 
 	public function createLiveEvent($user,$event,$organization,$donationRate,$distanceGoal) {
