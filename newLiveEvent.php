@@ -16,6 +16,8 @@ class LiveEvent {
 	}
 
 	public function createLiveEvent($user,$event,$organization,$donationRate,$distanceGoal) {
-		echo "Creating live event called on" . " " . $user;
+		/**
+		 * Add live event record 
+		 */
 	}
 }
