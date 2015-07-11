@@ -12,12 +12,10 @@ class LiveEvent {
 		$rate = $post[3];
 		$goalDistance = $post[4];
 
-		echo $organization . " " . $eventName; 
-
-		//$this->createLiveEvent($user,$eventName,$organization,$rate,$goalDistance);
+		$this->createLiveEvent($user,$eventName,$organization,$rate,$goalDistance);
 	}
 
 	public function createLiveEvent($user,$event,$organization,$donationRate,$distanceGoal) {
-		echo "Creating live event called on" + $user;
+		echo "Creating live event called on" . " " . $user;
 	}
 }
