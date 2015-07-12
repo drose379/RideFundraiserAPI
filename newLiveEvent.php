@@ -18,7 +18,7 @@ class LiveEvent {
 	public function createLiveEvent($user,$event,$organization,$donationRate,$goalDistance) {
 		$con = DBConnect::get();
 
-		$stmt = $con->prepare("INSERT INTO LiveMile (user,eventName,organization,perMile,goalDistance VALUES (:user,:event,:organization,:rate,:goalDistance)");
+		$stmt = $con->prepare("INSERT INTO LiveMile (user,eventName,organization,perMile,goalDistance) VALUES (:user,:event,:organization,:rate,:goalDistance)");
 		$stmt->bindParam(':user',$user);
 		$stmt->bindParam(':event',$event);
 		$stmt->bindParam(':organization',$organization);
