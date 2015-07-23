@@ -1,6 +1,7 @@
 <?php
 
 require 'newLiveEvent.php';
+require 'updateLiveEvent.php';
 
 class router {
 
@@ -12,7 +13,8 @@ class router {
 
 	public function loadRoutes() {
 		$this->routes = [
-			"/newLiveEvent" => [new LiveEvent,"run"]
+			"/newLiveEvent" => [new LiveEvent,"run"],
+			"/updateLiveEvent" => [new UpdateLiveEvent,"run"]
 		];
 	}
 
