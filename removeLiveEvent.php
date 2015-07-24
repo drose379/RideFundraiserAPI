@@ -18,4 +18,6 @@ class RemoveLiveEvent {
 		$stmt->bindParam(':event',$event);
 		$stmt->execute();
 	}
+
+	//Must also remove from LiveMileUpdates table
 }

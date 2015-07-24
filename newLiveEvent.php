@@ -36,7 +36,7 @@ class LiveEvent {
 		$stmt->bindParam(':event',$event);
 		$stmt->execute();
 		while ($result = $stmt->fetch()) {
-			echo $result;
+			echo $result["ID"];
 		}
 
 		//use ID to create a record in the LiveMileEventUpdates table for use later
