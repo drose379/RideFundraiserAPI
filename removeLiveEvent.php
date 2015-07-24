@@ -29,7 +29,7 @@ class RemoveLiveEvent {
 		$stmt->bindParam(':event',$event);
 		$stmt->execute();
 		while ($result = $stmt->fetch()) {
-			$eventID = $reuslt["ID"];
+			$eventID = $result["ID"];
 		}
 
 		$stmt2 = $con->prepare("DELETE FROM LiveMileUpdates WHERE ID = :id");
