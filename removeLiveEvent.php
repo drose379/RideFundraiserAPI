@@ -24,7 +24,7 @@ class RemoveLiveEvent {
 		$eventID = null;
 
 		$con = DBConnect::get();
-		$stmt = $con->preapre("SELECT ID from LiveMile WHERE user = :user AND eventName = :event");
+		$stmt = $con->prepare("SELECT ID from LiveMile WHERE user = :user AND eventName = :event");
 		$stmt->bindParam(':user',$user);
 		$stmt->bindParam(':event',$event);
 		$stmt->execute();
