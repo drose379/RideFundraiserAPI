@@ -30,15 +30,19 @@ class LiveEvent {
 	}
 
 	public function createLiveEventUpdates($user,$event) {
+		$itemID = null;
+
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT ID from LiveMile WHERE user = :user AND eventName = :event");
 		$stmt->bindParam(':user',$user);
 		$stmt->bindParam(':event',$event);
 		$stmt->execute();
 		while ($result = $stmt->fetch()) {
-			echo $result["ID"];
+			$itemID = $result["ID"];
 		}
 
-		//use ID to create a record in the LiveMileEventUpdates table for use later
+		$stmt2 = $con->prepare("INSERT INTO LiveMileUpdates (ID) VALUES (:id)");
+		$stmt->bindParam(':id',$itemID);
+		$stmt->execute();
 	}
 }
