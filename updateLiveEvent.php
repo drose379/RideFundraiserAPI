@@ -25,7 +25,7 @@ class UpdateLiveEvent {
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT ID FROM LiveMile WHERE user = :user AND eventName = :event");
 		$stmt->bindParam(':user',$user);
-		$stmt->bindParam(':event');
+		$stmt->bindParam(':event',$event);
 		$stmt->execute();
 		while ($result = $stmt->fetch()) {
 			$eventID = $result["ID"];
