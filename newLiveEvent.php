@@ -42,7 +42,7 @@ class LiveEvent {
 		}
 
 		$stmt2 = $con->prepare("INSERT INTO LiveMileUpdates (ID) VALUES (:id)");
-		$stmt->bindParam(':id',$itemID);
-		$stmt->execute();
+		$stmt2->bindParam(':id',$itemID);
+		$stmt2->execute();
 	}
 }
