@@ -19,14 +19,26 @@ class UpdateLiveEvent {
 		$this->updateEvent($user,$eventName,$updatedDistance);
 	}
 
-	public function updateEvent($user,$event,$updatedDistance) {
-		//LiveMileUpdates needs a ID column to tie back to LiveMile table
+	public function updateEvent($user,$event,$distance,$speed,$time,$percent,$raised) {
+		$eventID = null;
 
 		$con = DBConnect::get();
-		$stmt = $con->prepare("UPDATE LiveMileUpdates SET actualDistance = :updatedDistance WHERE ID = :id");
-		$stmt->bindParam(':updatedDistance',$updatedDistance);
+		$stmt = $con->prepare("SELECT ID FROM LiveMile WHERE user = :user AND eventName = :event");
 		$stmt->bindParam(':user',$user);
-		$stmt->bindParam(':eventName',$event);
+		$stmt->bindParam(':event');
 		$stmt->execute();
+		while ($result = $stmt->fetch()) {
+			$eventID = $result["ID"];
+		}
+
+		$stmt2 = $con->prepare("UPDATE LiveMileUpdates SET distance = :distance, averageSpeed = :averageSpeed, time = :time, percentReached = :percent, amountRaised = :raised 
+			WHERE ID = :id");
+		$stmt2->bindParam(':distance',$distance);
+		$stmt2->bindParam(':averageSpeed',$speed);
+		$stmt2->bindParam(':time',$time);
+		$stmt2->bindParam(':percent',$percent);
+		$stmt2->bindParam(':raised',$raised);
+		$stmt2->bindParam(':id',$eventID);
+		$stmt2->execute();
 	}
 }
