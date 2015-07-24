@@ -8,6 +8,7 @@ class RemoveLiveEvent {
 		$user = $post[0];
 		$event = $post[1];
 
+		$this->removeEventUpdates($user,$event);
 		$this->removeEvent($user,$event);
 	}
 
@@ -19,5 +20,20 @@ class RemoveLiveEvent {
 		$stmt->execute();
 	}
 
-	//Must also remove from LiveMileUpdates table
+	public function removeEventUpdates($user,$event) {
+		$eventID = null;
+
+		$con = DBConnect::get();
+		$stmt = $con->preapre("SELECT ID from LiveMile WHERE user = :user AND eventName = :event");
+		$stmt->bindParam(':user',$user);
+		$stmt->bindParam(':event',$event);
+		$stmt->execute();
+		while ($result = $stmt->fetch()) {
+			$eventID = $reuslt["ID"];
+		}
+
+		$stmt2 = $con->prepare("DELETE FROM LiveMileUpdates WHERE ID = :id");
+		$stmt2->bindParam(':id',$eventID);
+		$stmt2->execute();
+	}
 }
