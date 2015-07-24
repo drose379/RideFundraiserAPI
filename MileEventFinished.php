@@ -6,7 +6,7 @@
 
 		# RETURN Json encoded string of donation summary
 
-require 'connection.php'
+require 'connection.php';
 
 class MileEventFinished {
 
