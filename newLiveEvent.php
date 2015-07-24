@@ -12,10 +12,11 @@ class LiveEvent {
 		$rate = $post[3];
 		$goalDistance = $post[4];
 
-		$this->createLiveEvent($user,$eventName,$organization,$rate,$goalDistance);
+		$this->createLiveEventBase($user,$eventName,$organization,$rate,$goalDistance);
+		$this->createLiveEventUpdates($user,$eventName);
 	}
 
-	public function createLiveEvent($user,$event,$organization,$donationRate,$goalDistance) {
+	public function createLiveEventBase($user,$event,$organization,$donationRate,$goalDistance) {
 		$con = DBConnect::get();
 
 		$stmt = $con->prepare("INSERT INTO LiveMile (user,eventName,organization,perMile,goalDistance) VALUES (:user,:event,:organization,:rate,:goalDistance)");
@@ -26,5 +27,18 @@ class LiveEvent {
 		$stmt->bindParam(':goalDistance',$goalDistance);
 
 		$stmt->execute();
+	}
+
+	public function createLiveEventUpdates($user,$event) {
+		$con = DBConnect::get();
+		$stmt = $con->preapre("SELECT ID from LiveMile WHERE user = :user AND eventName = :event");
+		$stmt->bindParam(':user',$user);
+		$stmt->bindParam(':event',$event);
+		$stmt->execute();
+		while ($result = $stmt->fetch()) {
+			echo $result;
+		}
+
+		//use ID to create a record in the LiveMileEventUpdates table for use later
 	}
 }
