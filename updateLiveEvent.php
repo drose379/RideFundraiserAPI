@@ -10,13 +10,13 @@ class UpdateLiveEvent {
 
 		$user = $post[0];
 		$eventName = $post[1];
-		$updatedDistance = $post[2];
-		$updatedTime = $post[3];
-		$updatedPercentReached = $post[4];
-		$updatedAvgSpeed = $post[5];
+		$distance = $post[2];
+		$time = $post[3];
+		$percentReached = $post[4];
+		$avgSpeed = $post[5];
 		$baseRaised = $post[6];
 
-		$this->updateEvent($user,$eventName,$updatedDistance);
+		$this->updateEvent($user,$eventName,$distance,$avgSpeed,$time,$percentReached,$baseRaised);
 	}
 
 	public function updateEvent($user,$event,$distance,$speed,$time,$percent,$raised) {
