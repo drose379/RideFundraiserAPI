@@ -2,6 +2,8 @@
 
 require 'newLiveEvent.php';
 require 'updateLiveEvent.php';
+require 'removeLiveEvent.php';
+require 'MileEventFinished.php';
 
 class router {
 
@@ -14,7 +16,9 @@ class router {
 	public function loadRoutes() {
 		$this->routes = [
 			"/newLiveEvent" => [new LiveEvent,"run"],
-			"/updateLiveEvent" => [new UpdateLiveEvent,"run"]
+			"/updateLiveEvent" => [new UpdateLiveEvent,"run"],
+			"/removeLiveEvent" => [new RemoveLiveEvent,"run"],
+			"/liveEventFinished" => [new MileEventFinished,"run"]
 		];
 	}
 
