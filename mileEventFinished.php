@@ -63,6 +63,7 @@ class MileEventFinished {
 		$stmt2->bindParam(':time',$eventInfo["time"]);
 		$stmt2->bindParam(':averageSpeed',$eventInfo["averageSpeed"]);
 		$stmt2->bindParam(':goalReached',$eventInfo["percentReached"]);
+		$stmt2->execute();
 	}
 
 	//generate donation summary and insert it into CompleteMileEvent record where id = $eventId, use UPDATE
