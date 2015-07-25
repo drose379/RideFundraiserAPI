@@ -45,7 +45,7 @@ class MileEventFinished {
 		$eventInfo = [];
 
 		$con = DBConnect::get();
-		$stmt = $con->preapre("SELECT * FROM LiveMileUpdates WHERE ID = :eventId");
+		$stmt = $con->prepare("SELECT * FROM LiveMileUpdates WHERE ID = :eventId");
 		$stmt->bindParam(':eventId',$eventId);
 		$stmt->execute();
 		while($result = $stmt->fetch(PDO::FETCH_ASOC)) {
