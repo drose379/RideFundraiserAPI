@@ -43,7 +43,7 @@ class MileEventFinished {
 		//grab data from Live table
 		//insert into completed table
 
-		$eventInfo = [];
+		$eventInfo;
 
 		$con = DBConnect::get();
 		$stmt = $con->prepare("SELECT * FROM LiveMileUpdates WHERE ID = :eventId");
