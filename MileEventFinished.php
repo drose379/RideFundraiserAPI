@@ -1,10 +1,14 @@
 <?php
 
-		# Generate donation summary with values from EventDonation table (Put dummy data to test)
-			# Once donation summary is created, remove records from EventDonation table
-		# Move event record from LiveMile table to CompleteMileEvent table
 
-		# RETURN Json encoded string of donation summary
+		/**
+		  * Grab ID from LiveMile table for event
+		  * Move data from LiveMileUpdates table to CompleteMileEvent table
+		  * Remove Item from LiveMile table
+		  * Remove Item from LiveMileUpdates table
+		  * Pull data from LiveEventDonations table and form a JSONArray of donation summary, echo as string back to application 
+		  */
+
 
 require_once 'connect.php';
 
@@ -16,26 +20,39 @@ class MileEventFinished {
 		$user = $post[0];
 		$event = $post[1];
 
-		$eventData = $this->grabLiveEvent($user,$event);
-		echo json_encode($eventData);
-		//move to Complete table
-		//generate donation summary (make sure dummy data is there first)
-		//echo back
-
+		$eventID = $this->grabEventId($user,$event);
+		$this->moveFromLiveToComplete($eventID);
 	}
 
-	public function grabLiveEvent($user,$event) {
-		$eventData = array();
+	public function grabEventId($user,$event) {
+		$eventId = null;
 
 		$con = DBConnect::get();
-		$stmt = $con->prepare("SELECT * FROM LiveMile WHERE user = :user AND eventName = :event");
+		$stmt = $con->prepare("SELECT ID FROM LiveMile WHERE user = :user AND eventName = :event");
 		$stmt->bindParam(':user',$user);
 		$stmt->bindParam(':event',$event);
 		$stmt->execute();
-		while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$eventData[] = $result;
+		while($result = $stmt->fetch()) {
+			$eventId = $result["ID"];
 		}
-		return $eventData;
+		return $eventId;
 	}
+
+	public function moveFromLiveToComplete($eventId) {
+		//grab data from Live table
+		//insert into completed table
+
+		$eventInfo = [];
+
+		$con = DBConnect::get();
+		$stmt = $con->preapre("SELECT * FROM LiveMileUpdates WHERE ID = :eventId");
+		$stmt->bindParam(':eventId',$eventId);
+		$stmt->execute();
+		while($result = $stmt->fetch(PDO::FETCH_ASOC)) {
+			$eventInfo[] = $result;
+		}
+		echo json_encode($eventInfo);
+	}
+
 
 }

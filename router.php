@@ -3,7 +3,7 @@
 require 'newLiveEvent.php';
 require 'updateLiveEvent.php';
 require 'removeLiveEvent.php';
-require 'MileEventFinished.php';
+require 'mileEventFinished.php';
 
 class router {
 
