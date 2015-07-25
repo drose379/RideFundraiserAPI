@@ -56,8 +56,8 @@ class MileEventFinished {
 		echo json_encode($eventInfo);
 		
 		//use eventInfo to insert record into CompleteMileEvent table
-		$stmt2 = $con->prepare("INSERT INTO CompleteMileEvent (ID,user,eventName,distance,time,averageSpeed,goalReached) VALUES 
-			(:id,:user,:event,:distance,:time,:averageSpeed,:goalReached)");
+		$stmt2 = $con->prepare("INSERT INTO CompleteMileEvent (ID,user,eventName,distance,time,averageSpeed,goalReached,donationSummary) VALUES 
+			(:id,:user,:event,:distance,:time,:averageSpeed,:goalReached,:donation)");
 		$stmt2->bindParam(':id',$eventId);
 		$stmt2->bindParam(':user',$user);
 		$stmt2->bindParam(':event',$eventName);
@@ -65,6 +65,7 @@ class MileEventFinished {
 		$stmt2->bindParam(':time',$eventInfo["time"]);
 		$stmt2->bindParam(':averageSpeed',$eventInfo["averageSpeed"]);
 		$stmt2->bindParam(':goalReached',$eventInfo["percentReached"]);
+		$stmt->bindValue(':donation',"TESTING");
 	}
 
 	//generate donation summary and insert it into CompleteMileEvent record where id = $eventId, use UPDATE
