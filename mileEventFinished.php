@@ -4,10 +4,9 @@
 		/**
 		  * Grab ID from LiveMile table for event
 		  * Move data from LiveMileUpdates table to CompleteMileEvent table
+		  * Pull data from LiveEventDonations table and form a JSONArray of donation summary, echo as string back to application 
 		  * Remove Item from LiveMile table
 		  * Remove Item from LiveMileUpdates table
-		  * Pull data from LiveEventDonations table and form a JSONArray of donation summary, echo as string back to application 
-		  * Also echo all event data back to application (dist,avg speed,time, etc)
 		  */
 
 
@@ -57,7 +56,7 @@ class MileEventFinished {
 		//use eventInfo to insert record into CompleteMileEvent table
 		$stmt2 = $con->prepare("INSERT INTO CompleteMileEvent (ID,user,eventName,distance,time,averageSpeed,goalReached) VALUES 
 			(:id,:user,:event,:distance,:time,:averageSpeed,:goalReached)");
-		$stmt2->bindParam(':id',$eventInfo["ID"]);
+		$stmt2->bindParam(':id',$eventId);
 		$stmt2->bindParam(':user',$user);
 		$stmt2->bindParam(':event',$eventName);
 		$stmt2->bindParam(':distance',$eventInfo["distance"]);
