@@ -48,7 +48,7 @@ class MileEventFinished {
 		$stmt = $con->prepare("SELECT * FROM LiveMileUpdates WHERE ID = :eventId");
 		$stmt->bindParam(':eventId',$eventId);
 		$stmt->execute();
-		while($result = $stmt->fetch(PDO::FETCH_ASOC)) {
+		while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$eventInfo[] = $result;
 		}
 		echo json_encode($eventInfo);
