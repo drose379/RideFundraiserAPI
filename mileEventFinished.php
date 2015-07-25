@@ -2,8 +2,8 @@
 
 
 		/**
-		  * Grab ID from LiveMile table for event
-		  * Move data from LiveMileUpdates table to CompleteMileEvent table
+		  * Grab ID from LiveMile table for event (--)
+		  * Move data from LiveMileUpdates table to CompleteMileEvent table (--)
 		  * Pull data from LiveEventDonations table and form a JSONArray of donation summary, echo as string back to application 
 		  * Remove Item from LiveMile table
 		  * Remove Item from LiveMileUpdates table
@@ -80,10 +80,27 @@ class MileEventFinished {
 			$donationParent[] = $result;
 		}
 
-		//echo json_encode($donationParent);
+		echo json_encode($donationParent);
 
 	}
 
 	//cleanup, remove from LiveEvent,LiveEventUpdates and LiveEventDonations
+	public function removeAsLiveEvent($eventID) {
+
+		$con = DBConnect::get();
+
+		$stmt = $con->prepare("DELETE FROM LiveMile WHERE ID = :id");
+		$stmt->bindParam(':id',$eventID);
+		$stmt->execute();
+
+		$stmt2 = $con->preapre("DELETE FROM LiveMileUpdates WHERE ID = :id");
+		$stmt2->bindParam(':id',$eventID);
+		$stmt2->execute();
+
+		$stmt3 = $con->prepare("DELETE FROM LiveEventDonations WHERE eventId = :id");
+		$stmt3->bindParam(':id',$eventID);
+		$stmt3->execute();
+
+	}
 
 }
