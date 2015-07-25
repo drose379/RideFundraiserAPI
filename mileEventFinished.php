@@ -53,7 +53,7 @@ class MileEventFinished {
 			$eventInfo[] = $result;
 		}
 
-		echo $eventInfo["distance"];
+		echo $eventInfo["distance"] . "TEST DISTANCE";
 		
 		//use eventInfo to insert record into CompleteMileEvent table
 		$stmt2 = $con->prepare("INSERT INTO CompleteMileEvent (ID,user,eventName,distance,time,averageSpeed,goalReached) VALUES 
