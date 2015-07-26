@@ -23,6 +23,7 @@ class MileEventFinished {
 		$eventID = $this->grabEventId($user,$event);
 		$this->moveFromLiveToComplete($eventID,$user,$event);
 		$this->generateDonationSummary($eventID);
+		$this->removeAsLiveEvent($eventID);
 	}
 
 	public function grabEventId($user,$event) {
