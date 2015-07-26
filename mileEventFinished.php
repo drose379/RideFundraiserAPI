@@ -94,7 +94,7 @@ class MileEventFinished {
 		$stmt->bindParam(':id',$eventID);
 		$stmt->execute();
 
-		$stmt2 = $con->preapre("DELETE FROM LiveMileUpdates WHERE ID = :id");
+		$stmt2 = $con->prepare("DELETE FROM LiveMileUpdates WHERE ID = :id");
 		$stmt2->bindParam(':id',$eventID);
 		$stmt2->execute();
 
