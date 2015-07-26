@@ -81,6 +81,11 @@ class MileEventFinished {
 			$donationParent[] = $result;
 		}
 
+		$stmt2 = $con->prepare("UPDATE CompleteMileEvent SET donationSummary = :donationSummary WHERE ID = :id");
+		$stmt2->bindParam(':donationSummary',$donationParent);
+		$stmt2->bindParam(':id',$eventId);
+		$stmt2->execute();
+
 		echo json_encode($donationParent);
 
 	}
